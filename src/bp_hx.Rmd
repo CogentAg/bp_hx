@@ -4,10 +4,10 @@ author: "Jose A, Hernandez"
 date: "11/04/2022"
 output:
   html_document:
-  toc: true
-toc_float: true
-df_print: paged
-code_download: true
+    toc: true
+    toc_float: true
+    df_print: paged
+    code_download: true
 ---
   
 ```{r setup, include=FALSE}
@@ -80,22 +80,23 @@ ggplot(bp, aes(x=hr_index_bpm, y=hr_gg_0604)) +
   geom_smooth(method=lm)
 
 ```
-## Deming regression and Bland-Altman plots:
-  
-```{r deming.regression, echo=FALSE}
 
-#--- Deming regression and Blant-Altman Plots
+## Passing Bablok regression and Bland-Altman plots:
+  
+```{r PaBa.regression, echo=FALSE}
+
+#--- Passing Bablok regression and Blant-Altman Plots
 
 #--- Systolic
 
 dem.reg.s_bp <- mcreg(x=bp$systolic_index_bpm,
                       y=bp$systolic_gg_0604,
-                      method.reg = "Deming",
+                      method.reg = "PaBa",
                       mref.name = "Garmin Index BPM",
-                      mtest.name = "GG 0604",
-                      na.rm = TRUE
+                      mtest.name = "GG 0604"
 )
-plot(dem.reg.s_bp)
+plot(dem.reg.s_bp,
+     sub = "Systolic")
 plotResiduals(dem.reg.s_bp)
 plotDifference(dem.reg.s_bp)
 
@@ -103,12 +104,13 @@ plotDifference(dem.reg.s_bp)
 
 dem.reg.d_bp <- mcreg(x=bp$diastolic_index_bpm,
                       y=bp$diastolic_gg_0604,
-                      method.reg = "Deming",
+                      method.reg = "PaBa",
                       mref.name = "Garmin Index BPM",
                       mtest.name = "GG 0604",
                       na.rm = TRUE
 )
-plot(dem.reg.d_bp)
+plot(dem.reg.d_bp,
+     sub = "Diastolic")
 plotResiduals(dem.reg.d_bp)
 plotDifference(dem.reg.d_bp)
 
@@ -116,12 +118,13 @@ plotDifference(dem.reg.d_bp)
 
 dem.reg.hr_bp <- mcreg(x=bp$hr_index_bpm,
                        y=bp$hr_gg_0604,
-                       method.reg = "Deming",
+                       method.reg = "PaBa",
                        mref.name = "Garmin Index BPM",
                        mtest.name = "GG 0604",
                        na.rm = TRUE
 )
-plot(dem.reg.hr_bp)
+plot(dem.reg.hr_bp,
+     sub="Heart Rate")
 plotResiduals(dem.reg.hr_bp)
 plotDifference(dem.reg.hr_bp)
 
