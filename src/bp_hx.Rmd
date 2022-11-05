@@ -89,7 +89,7 @@ ggplot(bp, aes(x=hr_index_bpm, y=hr_gg_0604)) +
 
 #--- Systolic
 
-dem.reg.s_bp <- mcreg(x=bp$systolic_index_bpm,
+dem.reg.s_bp = mcreg(x=bp$systolic_index_bpm,
                       y=bp$systolic_gg_0604,
                       method.reg = "PaBa",
                       mref.name = "Garmin Index BPM",
@@ -102,7 +102,7 @@ plotDifference(dem.reg.s_bp)
 
 #--- Diastolic
 
-dem.reg.d_bp <- mcreg(x=bp$diastolic_index_bpm,
+dem.reg.d_bp = mcreg(x=bp$diastolic_index_bpm,
                       y=bp$diastolic_gg_0604,
                       method.reg = "PaBa",
                       mref.name = "Garmin Index BPM",
@@ -116,7 +116,7 @@ plotDifference(dem.reg.d_bp)
 
 #--- Heart Rate
 
-dem.reg.hr_bp <- mcreg(x=bp$hr_index_bpm,
+dem.reg.hr_bp = mcreg(x=bp$hr_index_bpm,
                        y=bp$hr_gg_0604,
                        method.reg = "PaBa",
                        mref.name = "Garmin Index BPM",
@@ -124,7 +124,7 @@ dem.reg.hr_bp <- mcreg(x=bp$hr_index_bpm,
                        na.rm = TRUE
 )
 plot(dem.reg.hr_bp,
-     sub="Heart Rate")
+     sub = "Heart Rate")
 plotResiduals(dem.reg.hr_bp)
 plotDifference(dem.reg.hr_bp)
 
@@ -138,36 +138,38 @@ plotDifference(dem.reg.hr_bp)
 
 #--- diastolic
 
-sys_n <- length(bp$systolic_index_bpm[!is.na(bp$systolic_index_bpm)])
-sys_mae <- MAE(bp$systolic_index_bpm, bp$systolic_gg_0604, na.rm = TRUE)
-sys_mape <- MAPE(bp$systolic_index_bpm, bp$systolic_gg_0604, na.rm = TRUE)
-sys_rmse <- RMSE(bp$systolic_index_bpm, bp$systolic_gg_0604, na.rm = TRUE)
-sys_r2 <- summary(lm(bp$systolic_gg_0604 ~ bp$systolic_index_bpm))$r.squared
+sys_n = length(bp$systolic_index_bpm[!is.na(bp$systolic_index_bpm)])
+sys_mae = MAE(bp$systolic_index_bpm, bp$systolic_gg_0604, na.rm = TRUE)
+sys_mape = MAPE(bp$systolic_index_bpm, bp$systolic_gg_0604, na.rm = TRUE)
+sys_rmse = RMSE(bp$systolic_index_bpm, bp$systolic_gg_0604, na.rm = TRUE)
+sys_r2 = summary(lm(bp$systolic_gg_0604 ~ bp$systolic_index_bpm))$r.squared
 
 #--- Diastolic
 
-dia_n <- length(bp$diastolic_index_bpm[!is.na(bp$diastolic_index_bpm)])
-dia_mae <- MAE(bp$diastolic_index_bpm, bp$diastolic_gg_0604, na.rm = TRUE)
-dia_mape <- MAPE(bp$diastolic_index_bpm, bp$diastolic_gg_0604, na.rm = TRUE)
-dia_rmse <- RMSE(bp$diastolic_index_bpm, bp$diastolic_gg_0604, na.rm = TRUE)
-dia_r2 <- summary(lm(bp$diastolic_gg_0604 ~ bp$diastolic_index_bpm))$r.squared
+dia_n = length(bp$diastolic_index_bpm[!is.na(bp$diastolic_index_bpm)])
+dia_mae = MAE(bp$diastolic_index_bpm, bp$diastolic_gg_0604, na.rm = TRUE)
+dia_mape = MAPE(bp$diastolic_index_bpm, bp$diastolic_gg_0604, na.rm = TRUE)
+dia_rmse = RMSE(bp$diastolic_index_bpm, bp$diastolic_gg_0604, na.rm = TRUE)
+dia_r2 = summary(lm(bp$diastolic_gg_0604 ~ bp$diastolic_index_bpm))$r.squared
 
 #--- Heart Rate
 
-hr_n <- length(bp$hr_index_bpm[!is.na(bp$hr_index_bpm)])
-hr_mae <- MAE(bp$hr_index_bpm, bp$hr_gg_0604, na.rm = TRUE)
-hr_mape <- MAPE(bp$hr_index_bpm, bp$hr_gg_0604, na.rm = TRUE)
-hr_rmse <- RMSE(bp$hr_index_bpm, bp$hr_gg_0604, na.rm = TRUE)
-hr_r2 <- summary(lm(bp$hr_gg_0604 ~ bp$hr_index_bpm))$r.squared
+hr_n = length(bp$hr_index_bpm[!is.na(bp$hr_index_bpm)])
+hr_mae = MAE(bp$hr_index_bpm, bp$hr_gg_0604, na.rm = TRUE)
+hr_mape = MAPE(bp$hr_index_bpm, bp$hr_gg_0604, na.rm = TRUE)
+hr_rmse = RMSE(bp$hr_index_bpm, bp$hr_gg_0604, na.rm = TRUE)
+hr_r2 = summary(lm(bp$hr_gg_0604 ~ bp$hr_index_bpm))$r.squared
 
-table.1 <- matrix(c(sys_n,sys_mae,sys_mape,sys_rmse,sys_r2,
-                    dia_n,dia_mae,dia_mape,dia_rmse,dia_r2,
-                    hr_n,hr_mae,hr_mape,hr_rmse,hr_r2
-), ncol= 5, byrow = TRUE)
-colnames(table.1) <- c("n", "MAE", "MAPE","RMSE", "R2")
-rownames(table.1) <- c("Systolic, mm Hg", "Diastolic, mm Hg", "HR, BPM")
+table.1 = matrix(c(sys_n,sys_mae,sys_mape,sys_rmse,sys_r2,
+                   dia_n,dia_mae,dia_mape,dia_rmse,dia_r2,
+                   hr_n,hr_mae,hr_mape,hr_rmse,hr_r2
+)
+,ncol= 5
+,byrow = TRUE)
+colnames(table.1) = c("n", "MAE", "MAPE","RMSE", "R2")
+rownames(table.1) = c("Systolic, mm Hg", "Diastolic, mm Hg", "HR, BPM")
 
-table.1 <- kable(table.1, digits = 2, caption = "Blood Pressure Accuracy Metrics" )
+table.1 = kable(table.1, digits = 2, caption = "Blood Pressure Accuracy Metrics" )
 table.1
 
 ````
