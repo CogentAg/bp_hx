@@ -7,6 +7,7 @@ A fun repo to share results comparing two devices to measure Blood Pressure.
 I compared [Garmin Index BPM](https://www.garmin.com/en-US/p/716808) vs Greater Goods Balance [Smart Blood Pressure Monitor Model 0604](https://greatergoods.com/service/0604)
 
 * I took 3X readings with each device each morning before eating, drinking, or exercising.
+* I took the readings in my left arm.
 * 3X readings replications were taken with 1 min interval in between readings for each device.
 * Mean of the the 3X readings was recorded and reported in the `data` folder.
 
