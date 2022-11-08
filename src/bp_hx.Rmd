@@ -40,6 +40,35 @@ bp = read.csv("~/dev/bp_hx/data/bp_hx.csv")
 bp = na.omit(bp)
 
 ```
+
+## Summary Statistics
+
+```{r stats, echo=FALSE}
+
+#--- Calculate n, mean, st.dev., c.v.
+
+bp_stats = bp %>%
+  dplyr::select(systolic_index_bpm,	diastolic_index_bpm, hr_index_bpm,
+                systolic_gg_0604,	diastolic_gg_0604,	hr_gg_0604) %>%
+  pivot_longer(cols = c('systolic_index_bpm','systolic_gg_0604',
+                        'diastolic_index_bpm', 'diastolic_gg_0604',
+                        'hr_index_bpm', 'hr_gg_0604'),
+               names_to = "parameter_device",
+               values_to = "value") %>%
+  group_by(parameter_device) %>%
+  summarise(
+    n = n(),
+    Mean = mean(value, na.rm = TRUE),
+    "Std. Dev." = sd(value, na.rm = TRUE),
+    Median = median(value),
+    Min = min(value),
+    Max = max(value),
+    "25% Quantile" = quantile(value, 0.25),
+    "75% Quantile" = quantile(value, 0.75)
+  )
+
+```
+
 ## 1:1 Comparision
 
 ```{r 1.to.1.comparision}
